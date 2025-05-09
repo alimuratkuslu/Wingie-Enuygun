@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: hello-app-sm
+  labels:
+    release: promstack 
+  namespace: default 
+spec:
+  selector:
+    matchLabels:
+      app: hello 
+  namespaceSelector:
+    matchNames:
+      - default 
+  endpoints:
+  - port: http 
+    interval: 15s
+    path: /metrics 
